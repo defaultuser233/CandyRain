@@ -106,7 +106,7 @@ function createStartScreen({ mount, images, onStart }) {
   const markup = document.createElement('div');
   markup.className = 'start-screen__markup';
   markup.innerHTML = `
-    <h1 class="start-screen__title">万圣节糖果雨</h1>
+    <h1 class="start-screen__title">万圣夜糖果雨</h1>
     <p class="start-screen__rules">左右移动篮子接住更多糖果，避开炸弹</p>
     <p class="start-screen__subtext">移动鼠标或手指控制篮子 · 漏接不扣分</p>
     <div class="start-screen__actions">

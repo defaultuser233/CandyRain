@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "万圣节糖果雨 —— 手绘风接糖果小游戏",
+  "description": "万圣夜糖果雨 —— 手绘风接糖果小游戏",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
