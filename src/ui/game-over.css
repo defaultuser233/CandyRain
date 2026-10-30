@@ -1,0 +1,180 @@
+/**
+ * 游戏结束弹窗样式 — candy-rain
+ * PRD §6：遮罩（rgba(5,7,15,.72) + blur）、面板（深色玻璃 + 橙色描边 + 外发光）、标题发光、弹入动画
+ * 复用 base.css 已有 .panel / .chip 体系
+ */
+
+/* ========== 遮罩层（覆盖在 #game-over-layer 上） ========== */
+
+.game-over-layer {
+  background: rgba(5, 7, 15, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* base.css 的 .modal-layer 用 grid place-items: center 居中，
+   这里不覆盖 display，让整个层作为遮罩 + 居中容器 */
+
+.game-over-panel {
+  max-width: 420px;
+  width: 100%;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1.4vw, 1rem);
+  /* 复用 base.css 的 .panel 视觉效果 */
+  background: rgba(16, 27, 69, 0.85);
+  border: 2px solid rgba(233, 86, 32, 0.55);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel), var(--glow-orange);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ========== 标题 ========== */
+
+.game-over-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  font-weight: 900;
+  color: var(--c-white);
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-shadow: 0 0 14px rgba(233, 86, 32, 0.6), 0 0 24px rgba(233, 86, 32, 0.35);
+}
+
+.game-over-title--new {
+  color: var(--c-orange);
+  text-shadow: 0 0 16px rgba(233, 86, 32, 0.7), 0 0 28px rgba(233, 86, 32, 0.4);
+}
+
+.game-over-subtitle {
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ========== 分数 ========== */
+
+.game-over-score-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  flex-wrap: wrap;
+}
+
+.game-over-score-label {
+  font-size: clamp(0.86rem, 1.4vw, 1rem);
+  color: rgba(255, 255, 255, 0.58);
+  font-weight: 600;
+}
+
+.game-over-score-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 900;
+  color: var(--c-white);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+/* ========== 最高分 ========== */
+
+.game-over-best-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  flex-wrap: wrap;
+}
+
+.game-over-best-text {
+  font-size: clamp(0.86rem, 1.4vw, 1rem);
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+
+.game-over-best-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 900;
+  color: var(--c-white);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+/* ========== 新纪录徽章 ========== */
+
+.game-over-new-best {
+  display: flex;
+  justify-content: center;
+}
+
+.game-over-new-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  background: rgba(233, 86, 32, 0.18);
+  border: 1px solid rgba(233, 86, 32, 0.55);
+  color: var(--c-white);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* ========== 统计 ========== */
+
+.game-over-stats {
+  font-size: clamp(0.84rem, 1.4vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* ========== 再来按钮 ========== */
+
+#go-restart {
+  width: 100%;
+  justify-content: center;
+  padding: clamp(0.6rem, 1.2vw, 0.85rem) clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  margin-top: 0.2em;
+}
+
+/* ========== 动画 ========== */
+
+@keyframes gameOverEnter {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gameOver-enter--repeat {
+  animation: gameOverEnter 200ms var(--ease-out);
+}
+
+/* ========== 响应式微调 ========== */
+
+@media (max-width: 720px) {
+  .game-over-panel {
+    padding: clamp(1.1rem, 3.2vw, 1.6rem);
+    border-radius: 24px;
+  }
+
+  .game-over-score-val {
+    font-size: clamp(1.5rem, 4.2vw, 2.2rem);
+  }
+}
