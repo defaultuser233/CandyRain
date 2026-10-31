@@ -42,7 +42,7 @@ export const SCORING = { comboStep: 5, maxMultiplier: 4 }
 export const WORLD = { speedScale: 1 }
 
 /**
- * 切换逻辑画布尺寸：桌面 / 横屏 960×600，手机竖屏 600×1000。
+ * 切换逻辑画布尺寸：桌面 / 横屏 960×600，手机竖屏 600 × (视口高度 / 视口宽度 × 600)。
  * 篮子与角色始终贴底，接取区随高度一起下移。
  */
 export function setWorld(width, height) {

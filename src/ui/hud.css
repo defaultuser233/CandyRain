@@ -564,3 +564,13 @@
     display: none;
   }
 }
+
+
+/* 竖屏全屏时避开刘海 / 状态栏 */
+@media (orientation: portrait) and (max-width: 900px) {
+  .hud__top {
+    padding-top: calc(10px + env(safe-area-inset-top));
+    padding-left: calc(10px + env(safe-area-inset-left));
+    padding-right: calc(10px + env(safe-area-inset-right));
+  }
+}

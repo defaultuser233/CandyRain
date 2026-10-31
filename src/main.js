@@ -11,7 +11,11 @@ const PORTRAIT_LAYOUT = '(orientation: portrait) and (max-width: 900px)';
 const portraitQuery = window.matchMedia(PORTRAIT_LAYOUT);
 const initialPortrait = portraitQuery.matches;
 
-setWorld(initialPortrait ? 600 : 960, initialPortrait ? 1000 : 600);
+const portraitWidth = 600;
+const portraitHeight = Math.round(
+  portraitWidth * (window.innerHeight / Math.max(1, window.innerWidth)),
+);
+setWorld(initialPortrait ? portraitWidth : 960, initialPortrait ? portraitHeight : 600);
 
 const onLayoutModeChange = () => {
   if (portraitQuery.matches !== initialPortrait) {

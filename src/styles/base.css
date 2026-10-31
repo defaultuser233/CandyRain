@@ -359,12 +359,16 @@ img {
 
 @media (orientation: portrait) and (max-width: 900px) {
   .screen--game {
-    padding: 8px;
+    padding: 0;
   }
 
   .stage {
-    width: min(calc(100vw - 20px), calc((100dvh - 96px) * 0.6), 560px);
-    aspect-ratio: 3 / 5;
-    border-radius: 20px;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
