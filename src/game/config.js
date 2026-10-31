@@ -44,7 +44,7 @@ export const DIFFICULTY = {
   minSpawnMs: 380,
   spawnRampPerSec: 7,
   baseSpeed: 190,
-  maxSpeed: 430,
+  maxSpeed: 520,
   speedRampPerSec: 4.2,
   bombChanceStart: 0.16,
   bombChanceMax: 0.3,

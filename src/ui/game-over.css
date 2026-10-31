@@ -178,3 +178,43 @@
     font-size: clamp(1.5rem, 4.2vw, 2.2rem);
   }
 }
+
+/* 横屏手机等矮屏：压缩面板并允许滚动，避免按钮被裁掉 */
+.game-over-panel {
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+}
+
+@media (max-height: 560px) {
+  .game-over-panel {
+    max-width: 380px;
+    padding: 0.9rem 1.1rem;
+    gap: 0.35rem;
+  }
+
+  .game-over-title {
+    font-size: 1.3rem;
+  }
+
+  .game-over-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .game-over-score-val {
+    font-size: 1.55rem;
+  }
+
+  .game-over-best-val {
+    font-size: 1rem;
+  }
+
+  .game-over-stats {
+    font-size: 0.76rem;
+  }
+
+  #go-restart {
+    min-height: 42px;
+    padding: 0.45rem 1.2rem;
+    font-size: 1rem;
+  }
+}

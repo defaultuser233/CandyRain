@@ -313,9 +313,9 @@
   transform: translateX(-50%);
 }
 
-/* ========== 响应式：<=720px ========== */
+/* ========== 响应式：<=900px ========== */
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__top {
     padding: clamp(6px, 2.5vw, 10px) clamp(8px, 3vw, 16px);
   }
@@ -377,7 +377,7 @@
   border: 0;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__score-label {
     display: none;
   }
@@ -394,7 +394,7 @@
   bottom: 24%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__top {
     padding: 6px 8px;
     gap: 8px;
@@ -523,7 +523,7 @@
   bottom: 44%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__hint {
     bottom: 44%;
   }
@@ -535,7 +535,7 @@
   bottom: 54%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__hint {
     bottom: 54%;
   }
@@ -547,7 +547,7 @@
   bottom: 58%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__hint {
     display: none;
   }
@@ -559,7 +559,7 @@
   bottom: 64%;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hud__hint {
     display: none;
   }

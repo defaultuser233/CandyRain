@@ -62,35 +62,57 @@ function playTone(freq, duration = 0.12, type = 'sine', volume = 0.15) {
 }
 
 /**
- * 播放接住音效：短促上行音，音高随 combo 升高（上限 +240Hz）。
+ * 播放接住音效：在五声音阶里循环，并带轻微随机音高/音色变化，避免后期一直重复。
+ * 连击达到 5 的倍数时额外叠一个高音提示。
  * @param {number} combo 连击数
  */
+const CATCH_NOTES = [523.25, 587.33, 659.25, 783.99, 880.0, 987.77];
+let lastCatchAt = -1;
+
 function playCatch(combo = 0) {
   if (muted) return;
   const ctx = getCtx();
   if (!ctx) return;
 
-  const baseFreq = 523.25; // C5
-  const rise = Math.min(combo, 8) * 30; // 每连 30Hz，上限 240Hz
-  const freq = baseFreq + rise;
   const t0 = ctx.currentTime;
+  if (t0 - lastCatchAt < 0.045) return;
+  lastCatchAt = t0;
+
+  const index = Math.max(0, Math.round(combo) - 1) % CATCH_NOTES.length;
+  const base = CATCH_NOTES[index] * (0.985 + Math.random() * 0.03);
+  const duration = 0.08 + Math.random() * 0.025;
+  const volume = 0.085;
 
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-
-  osc.type = 'sine';
-  osc.frequency.setValueAtTime(freq, t0);
-  osc.frequency.exponentialRampToValueAtTime(freq * 1.5, t0 + 0.08);
+  osc.type = combo % 2 === 0 ? 'triangle' : 'sine';
+  osc.frequency.setValueAtTime(base, t0);
+  osc.frequency.exponentialRampToValueAtTime(base * (1.12 + Math.random() * 0.08), t0 + duration);
 
   gain.gain.setValueAtTime(0, t0);
-  gain.gain.linearRampToValueAtTime(0.15, t0 + 0.008);
-  gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.11);
+  gain.gain.linearRampToValueAtTime(volume, t0 + 0.006);
+  gain.gain.exponentialRampToValueAtTime(0.001, t0 + duration);
 
   osc.connect(gain);
   gain.connect(ctx.destination);
-
   osc.start(t0);
-  osc.stop(t0 + 0.12);
+  osc.stop(t0 + duration + 0.01);
+
+  // 每 5 连击叠一个轻巧的高音，和普通接取音区分开
+  if (combo > 0 && combo % 5 === 0) {
+    const spark = ctx.createOscillator();
+    const sparkGain = ctx.createGain();
+    const sparkAt = t0 + 0.035;
+    spark.type = 'sine';
+    spark.frequency.setValueAtTime(base * 1.5, sparkAt);
+    sparkGain.gain.setValueAtTime(0, sparkAt);
+    sparkGain.gain.linearRampToValueAtTime(0.045, sparkAt + 0.006);
+    sparkGain.gain.exponentialRampToValueAtTime(0.001, sparkAt + 0.16);
+    spark.connect(sparkGain);
+    sparkGain.connect(ctx.destination);
+    spark.start(sparkAt);
+    spark.stop(sparkAt + 0.17);
+  }
 }
 
 /**

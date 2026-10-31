@@ -57,7 +57,7 @@ export function createHud({ mount, images, muted = false, onToggleMute }) {
   const muteButton = mount.querySelector('.hud__mute-btn');
   const hint = mount.querySelector('.hud__hint');
   const ariaLive = mount.querySelector('.hud__aria-live');
-  const coarsePointer = window.matchMedia?.('(pointer: coarse)').matches ?? false;
+  const coarsePointer = Boolean(window.matchMedia?.('(pointer: coarse)').matches) || navigator.maxTouchPoints > 0;
   if (coarsePointer) hint.textContent = '手指移动篮子';
 
   const heartNodes = [];

@@ -204,7 +204,7 @@ BOOT（预加载素材）
 | 参数 | 公式 | 范围 |
 | --- | --- | --- |
 | 生成间隔 | `950 - 7 × t` ms | 最小 380ms |
-| 下落速度 | `190 + 4.2 × t` px/s | 最高 430 px/s |
+| 下落速度 | `190 + 4.2 × t` px/s | 最高 520 px/s |
 | 炸弹概率 | `0.16 + 0.0018 × t` | 最高 0.30 |
 | 爱心概率 | 生命 < 3 且距上次爱心 ≥15s 时为 0.04 | 否则 0 |
 
@@ -254,7 +254,7 @@ BOOT（预加载素材）
 | 角色头顶上方 | 操作提示「移动鼠标控制篮子」 | 桌面开局显示 3s 后淡出；移动端隐藏（以开始屏说明为准） |
 | 受伤 | 画面边缘红色渐晕 | 与游戏内红闪同步 |
 
-- HUD 采用 `clamp()` 缩放，`< 720px` 时压缩内边距、隐藏称号与最高分文字。
+- HUD 采用 `clamp()` 缩放，`< 900px` 时压缩内边距、隐藏称号与最高分文字。
 - 分数使用 `aria-live="polite"` 的隐藏文本，避免每帧读屏。
 
 ---
@@ -341,7 +341,7 @@ export const SCORING = { comboStep: 5, maxMultiplier: 4 };
 
 export const DIFFICULTY = {
   baseSpawnMs: 950, minSpawnMs: 380, spawnRampPerSec: 7,
-  baseSpeed: 190, maxSpeed: 430, speedRampPerSec: 4.2,
+  baseSpeed: 190, maxSpeed: 520, speedRampPerSec: 4.2,
   bombChanceStart: 0.16, bombChanceMax: 0.3, bombRampPerSec: 0.0018,
   heartChance: 0.04, heartCooldownMs: 15000,
 };
@@ -576,7 +576,7 @@ export function createGameOver({ mount, onRestart }) {
 
 - 首次指针交互或点击按钮时创建 / 恢复 `AudioContext`。
 - 音效：
-  - 接住糖果：短促上行音（随连击升高音高），≤ 120ms。
+  - 接住糖果：五声音阶随连击循环，带轻微随机音高与音色变化；每 5 连击叠一个高音，避免后期重复，≤ 120ms。
   - 炸弹：低频噪声 + 下滑音，≤ 350ms。
   - 爱心：明亮双音。
   - 开始 / 结束：三音小旋律。
@@ -589,6 +589,7 @@ export function createGameOver({ mount, onRestart }) {
 ## 10. 响应式与无障碍
 
 - 支持视口宽度 320px–1920px；横屏手机与竖屏手机均可玩。
+- 竖屏手机在开始屏与游戏画面顶部显示「建议横屏游玩」提示；横屏时自动隐藏。
 - 所有按钮最小点击区 44×44px；按钮具备可见的 `:focus-visible` 状态。
 - 文字对比度 ≥ 4.5:1（橙色按钮上的白字通过加深底色或加粗保证可读）。
 - Canvas 提供 `aria-label`；HUD 分数通过隐藏的 `aria-live="polite"` 文本播报（每 5 秒最多一次）。
