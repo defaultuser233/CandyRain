@@ -109,14 +109,6 @@ function createStartScreen({ mount, images, onStart }) {
     <h1 class="start-screen__title">万圣夜糖果雨</h1>
     <p class="start-screen__rules">左右移动篮子接住更多糖果，避开炸弹</p>
     <p class="start-screen__subtext">移动鼠标或手指控制篮子 · 漏接不扣分</p>
-    <p class="start-screen__rotate-tip">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="7" y="2" width="10" height="20" rx="2" />
-        <path d="M4 9a8.5 8.5 0 0 1 13-4.5" />
-        <path d="M4 9V4.5M4 9h4.5" />
-      </svg>
-      <span>建议横屏游玩 · 操作空间更大</span>
-    </p>
     <div class="start-screen__actions">
       <button class="btn btn--primary btn--lg" id="start-btn" type="button">开始游戏</button>
       <div class="start-screen__error"></div>

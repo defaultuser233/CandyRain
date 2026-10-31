@@ -1,3 +1,4 @@
+import { setWorld } from './game/config.js';
 import { loadAssets } from './game/assets.js';
 import { createAudio } from './game/audio.js';
 import { createGame } from './game/game.js';
@@ -6,6 +7,22 @@ import { createHud } from './ui/hud.js';
 import { createGameOver } from './ui/gameOver.js';
 
 const BEST_KEY = 'candy-rain:best';
+const PORTRAIT_LAYOUT = '(orientation: portrait) and (max-width: 900px)';
+const portraitQuery = window.matchMedia(PORTRAIT_LAYOUT);
+const initialPortrait = portraitQuery.matches;
+
+setWorld(initialPortrait ? 600 : 960, initialPortrait ? 1000 : 600);
+
+const onLayoutModeChange = () => {
+  if (portraitQuery.matches !== initialPortrait) {
+    window.location.reload();
+  }
+};
+if (typeof portraitQuery.addEventListener === 'function') {
+  portraitQuery.addEventListener('change', onLayoutModeChange);
+} else {
+  portraitQuery.addListener(onLayoutModeChange);
+}
 
 
 const startMount = document.querySelector('#start-screen');

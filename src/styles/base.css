@@ -355,46 +355,16 @@ img {
 }
 
 
-/* ---------- 移动端横屏建议 ---------- */
-
-.rotate-tip {
-  display: none;
-}
+/* ---------- 手机竖屏舞台 ---------- */
 
 @media (orientation: portrait) and (max-width: 900px) {
-  .rotate-tip {
-    position: fixed;
-    top: calc(10px + env(safe-area-inset-top));
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 6;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    max-width: calc(100vw - 24px);
-    padding: 7px 13px;
-    border: 1px solid rgba(233, 86, 32, 0.42);
-    border-radius: var(--radius-pill);
-    background: rgba(10, 18, 48, 0.88);
-    color: rgba(255, 245, 230, 0.86);
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    pointer-events: none;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  .screen--game {
+    padding: 8px;
   }
 
-  .rotate-tip svg {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    fill: none;
-    stroke: var(--c-orange-bright);
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  .stage {
+    width: min(calc(100vw - 20px), calc((100dvh - 96px) * 0.6), 560px);
+    aspect-ratio: 3 / 5;
+    border-radius: 20px;
   }
 }

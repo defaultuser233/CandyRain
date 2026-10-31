@@ -495,38 +495,3 @@
       0 0 60px rgba(233, 86, 32, 0.3);
   }
 }
-
-
-/* ---------- 移动端横屏建议 ---------- */
-
-.start-screen__rotate-tip {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  margin-top: 2px;
-  padding: 6px 13px;
-  border: 1px solid rgba(233, 86, 32, 0.38);
-  border-radius: var(--radius-pill);
-  background: rgba(233, 86, 32, 0.08);
-  color: rgba(255, 245, 230, 0.72);
-  font-size: clamp(0.72rem, 1.5vw, 0.82rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.start-screen__rotate-tip svg {
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-  fill: none;
-  stroke: var(--c-orange-bright);
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-@media (orientation: portrait) and (max-width: 900px) {
-  .start-screen__rotate-tip {
-    display: inline-flex;
-  }
-}

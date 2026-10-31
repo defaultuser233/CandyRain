@@ -39,6 +39,21 @@ export const HEART = { key: 'heart', size: 52 }
 
 export const SCORING = { comboStep: 5, maxMultiplier: 4 }
 
+export const WORLD = { speedScale: 1 }
+
+/**
+ * 切换逻辑画布尺寸：桌面 / 横屏 960×600，手机竖屏 600×1000。
+ * 篮子与角色始终贴底，接取区随高度一起下移。
+ */
+export function setWorld(width, height) {
+  GAME.width = width
+  GAME.height = height
+  GAME.basketY = height - 199
+  GAME.catcherTop = GAME.basketY + 27
+  GAME.catcherBottom = GAME.basketY + 113
+  WORLD.speedScale = height / 600
+}
+
 export const DIFFICULTY = {
   baseSpawnMs: 950,
   minSpawnMs: 380,

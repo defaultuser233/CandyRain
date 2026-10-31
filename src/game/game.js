@@ -1,5 +1,6 @@
 import {
   GAME,
+  WORLD,
   COLORS,
   SCORING,
   DIFFICULTY,
@@ -125,9 +126,11 @@ export function createGame({ canvas, images, audio, onHud, onGameOver }) {
   }
 
   function fallSpeed() {
-    return Math.min(
-      DIFFICULTY.maxSpeed,
-      DIFFICULTY.baseSpeed + DIFFICULTY.speedRampPerSec * elapsed,
+    return (
+      Math.min(
+        DIFFICULTY.maxSpeed,
+        DIFFICULTY.baseSpeed + DIFFICULTY.speedRampPerSec * elapsed,
+      ) * WORLD.speedScale
     );
   }
 
